@@ -42,7 +42,7 @@ def data_group_barcode(file): # Data table grouping by barcode
 
 
 if __name__ == "__main__":
-    data_group_barcode('../term_project/raw_data/ont_reads.project.fastq.gz')
+    data_group_barcode('../../Desktop/ont_reads.project.fastq.gz')
     # data_group_barcode('../term_project/raw_data/try_seq.fastq')
 
 
