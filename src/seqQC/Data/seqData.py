@@ -2,13 +2,13 @@ from Bio import SeqIO
 import json
 import re
 import gzip
-from Bio.SeqRecord import SeqRecord
-import csv
+# from Bio.SeqRecord import SeqRecord
+# import csv
+import pandas as pd
 
-
+dict_group = {}
 
 def data_group_barcode(file): # Data table grouping by barcode
-    dict_group = {}
 
     # read gzip file
     with gzip.open(file,"rt") as input_file:
@@ -22,27 +22,39 @@ def data_group_barcode(file): # Data table grouping by barcode
                 # add to dict
                 dict_group.setdefault(each_barcode,[]).append(data)
 
-    # write into TSV
-    with open("group_data.tsv", "w") as output_tsv:
-        writer = csv.writer(output_tsv, delimiter="\t")
-        writer.writerow(["barcode", "seq_id", "total_phred_score", "seq_length"])
+    print("grouping done")
 
-        for barcode, records in dict_group.items():
-            for rec in records:
-                row_data = [
-                    barcode,
-                    rec.id,
-                    sum(rec.letter_annotations["phred_quality"]),
-                    len(rec.seq)
-                ]
-                writer.writerow(row_data)
+    
+def assess_data(dict):
+    pre_convert_data = []
+    for barcode, records in dict.items():
+        for rec in records:
+            data = [
+                barcode,
+                rec.id,
+                sum(rec.letter_annotations["phred_quality"]),
+                len(rec.seq)
+            ]
+            pre_convert_data.append(data)
+    
+    return pre_convert_data
 
-    print("save as tsv")
 
+def convert_df(data):
+    df = pd.DataFrame(data, columns=["barcode", "seq_id", "total_phred_score", "seq_length"])
+    print("converting done")
+    return df
+
+
+def preprocess_data(file):
+    data_group_barcode(file)
+    pre_convert_data = assess_data(dict_group)
+    convert_df(pre_convert_data)
+    print("preprocessing done")
 
 
 if __name__ == "__main__":
-    data_group_barcode('../term_project/raw_data/ont_reads.project.fastq.gz')
-    # data_group_barcode('../term_project/raw_data/try_seq.fastq')
+    preprocess_data('../term_project/raw_data/ont_reads.project.fastq.gz')
+    # preprocess_data('../term_project/raw_data/try_seq.fastq')
 
 
