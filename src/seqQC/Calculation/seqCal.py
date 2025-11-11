@@ -22,7 +22,7 @@ def cal_fastq_stat(file):
   
             
 
-def df_merge_stat(data_stat):
+def df_merge_stat(df, data_stat):
     df_stat = pd.DataFrame(data_stat[0:], columns=['seq_id', 'meanQ'])
     df_seqStat = pd.merge(df, df_stat, on='seq_id', how='inner')
     return df_seqStat
@@ -34,13 +34,9 @@ def df_merge_stat(data_stat):
 #     df_qt = df_seqStat.groupby('barcode')['meanQ'].agg([q_30])
 #     df_seqStat = pd.merge(df_seqStat, df_qt, on='barcode', how='inner')
 #     return df_seqStat
-   
-
-def calculate_sequence_statistics(file):
-    tsv_stat = cal_fastq_stat(file)
-    df_seqStat = df_merge_stat(tsv_stat)
   
   
 
 if __name__ == "__main__":
-    calculate_sequence_statistics('/mnt/c/Users/jitpr/SIRE504_programming/project504/ont_reads.project.fastq.gz')
+    data_stat = cal_fastq_stat('/mnt/c/Users/jitpr/SIRE504_programming/project504/ont_reads.project.fastq.gz')
+    df_merge_stat(df, data_stat)
