@@ -25,11 +25,11 @@ def filtered():
     passed = SeqTsv[SeqTsv['passes_filtering']] #return only column[passes_filtering] is True
     passed.to_csv('pass_read.tsv', sep='\t', index=False ) #save to new tsv
 
-    print('save the filtered data ')
+    print('save the filtered data')
 
 
 def DataToFastq(file):
-    df_Pass = pd.read_table('pass_filter.tsv')
+    df_Pass = pd.read_table('pass_read.tsv')
         
     record = ''
     with open(file, 'r') as handle:
@@ -40,11 +40,10 @@ def DataToFastq(file):
                     record += rec.format('fastq')
                     
 
-    with open('test12.fastq', 'w') as output:
+    with open('filtered_seq.fastq', 'w') as output:
         output.write(record)
                 
-
-print('finish')
+    print('save as fastq')
 
 
 
