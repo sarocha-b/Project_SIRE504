@@ -25,9 +25,9 @@ def data_group_barcode(file): # Data table grouping by barcode
     print("grouping done")
 
     
-def assess_data(dict):
+def assess_data():
     pre_convert_data = []
-    for barcode, records in dict.items():
+    for barcode, records in dict_group.items():
         for rec in records:
             data = [
                 barcode,
@@ -48,7 +48,7 @@ def convert_df(data):
 
 def preprocess_data(file):
     data_group_barcode(file)
-    pre_convert_data = assess_data(dict_group)
+    pre_convert_data = assess_data()
     convert_df(pre_convert_data)
     print("preprocessing done")
 
