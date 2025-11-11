@@ -1,5 +1,6 @@
 import pandas as pd
 from Bio import SeqIO
+import gzip
 
 def filterData(df_seqStat):
 
@@ -32,7 +33,7 @@ def DataToFastq(file):
     df_Pass = pd.read_table('pass_read.tsv')
         
     record = ''
-    with open(file, 'r') as handle:
+    with gzip.open(file, 'rt') as handle:
         record_iterator = SeqIO.parse(handle, "fastq")
         for rec in record_iterator:
             for i in df_Pass['seq_id']:
