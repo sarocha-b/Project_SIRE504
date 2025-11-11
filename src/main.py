@@ -4,8 +4,8 @@ from seqQC.Filter import seqFilter
 
 def main(file):
     # Step 1: Preprocess data to create DataFrame
-    dict = seqData.data_group_barcode(file)
-    data = seqData.assess_data(dict)
+    seqData.data_group_barcode(file)
+    data = seqData.assess_data()
     df = seqData.convert_df(data)
     
     # Step 2: Calculate sequence statistics
