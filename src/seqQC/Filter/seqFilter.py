@@ -1,37 +1,56 @@
 import pandas as pd
+from Bio import SeqIO
 
-def filterData(file):
+def filterData(df_seqStat):
 
-    seqtsv = pd.read_csv(file, delimiter='\t') # read file
+    # seqtsv = pd.read_csv(file, delimiter='\t') # read file
 
     #condition
-    seqtsv['length_filter'] = seqtsv['seq_length'] >= 200 
-    seqtsv['meanQscore_filter'] = seqtsv['meanQ'] >= 7
+    df_seqStat['length_filter'] = df_seqStat['seq_length'] >= 200 
+    df_seqStat['meanQscore_filter'] = df_seqStat['meanQ'] >= 7
 
     # save as tsv ???
-    seqtsv.to_csv(file, index=None, sep="\t")
+    df_seqStat.to_csv('total_read.tsv', index=None, sep="\t")
     
     print(f"Save data as a tsv file")
 
 
-def filtered(file):
+def filtered():
 
-    SeqTsv = pd.read_csv(file, delimiter='\t')
+    SeqTsv = pd.read_csv('total_read.tsv', delimiter='\t')
 
     # add new col with 2 condition
     SeqTsv["passes_filtering"] = SeqTsv['length_filter'] & SeqTsv['meanQscore_filter'] # & operator : return True or False
 
     passed = SeqTsv[SeqTsv['passes_filtering']] #return only column[passes_filtering] is True
-    passed.to_csv('pass_filter.tsv', sep='\t', index=False ) #save to new tsv
+    passed.to_csv('pass_read.tsv', sep='\t', index=False ) #save to new tsv
 
     print('save the filtered data ')
 
 
-def DataToFastq():
-    pass
+def DataToFastq(file):
+    df_Pass = pd.read_table('pass_filter.tsv')
+        
+    record = ''
+    with open(file, 'r') as handle:
+        record_iterator = SeqIO.parse(handle, "fastq")
+        for rec in record_iterator:
+            for i in df_Pass['seq_id']:
+                if rec.id == i:
+                    record += rec.format('fastq')
+                    
+
+    with open('test12.fastq', 'w') as output:
+        output.write(record)
+                
+
+print('finish')
 
 
 
 
 if __name__ == "__main__":
-    filterData('../project_test/stat_data.tsv')
+    # filterData('../../project_test/sequence_stat.tsv')
+    # filtered('../../project_test/sequence_stat.tsv')
+    DataToFastq('../../project_test/test_seq.fastq')
+
