@@ -1,16 +1,37 @@
 import pandas as pd
 
-def filterSeq(file):
+def filterData(file):
 
-    seqtsv = pd.read_csv('stat_data.tsv', delimiter='\t')
+    seqtsv = pd.read_csv(file, delimiter='\t') # read file
 
-    seqtsv['FT_Mean'] = seqtsv['%Mean'] >= 70 
-    seqtsv['FT_Quartile'] = seqtsv['Quartile'] >= 30
+    #condition
+    seqtsv['length_filter'] = seqtsv['seq_length'] >= 200 
+    seqtsv['meanQscore_filter'] = seqtsv['meanQ'] >= 7
 
-
-    seqtsv.to_csv(file, sep='\t', index=False )
+    # save as tsv ???
+    seqtsv.to_csv(file, index=None, sep="\t")
     
-    print(f"Finish")
+    print(f"Save data as a tsv file")
+
+
+def filtered(file):
+
+    SeqTsv = pd.read_csv(file, delimiter='\t')
+
+    # add new col with 2 condition
+    SeqTsv["passes_filtering"] = SeqTsv['length_filter'] & SeqTsv['meanQscore_filter'] # & operator : return True or False
+
+    passed = SeqTsv[SeqTsv['passes_filtering']] #return only column[passes_filtering] is True
+    passed.to_csv('pass_filter.tsv', sep='\t', index=False ) #save to new tsv
+
+    print('save the filtered data ')
+
+
+def DataToFastq():
+    pass
+
+
+
 
 if __name__ == "__main__":
-    filterSeq('stat_data.tsv')
+    filterData('../project_test/stat_data.tsv')
