@@ -47,6 +47,17 @@ def DataToFastq(file):
     print('save as fastq')
 
 
+def countRead():
+    total_data = pd.read_table('total_read.tsv')
+    pass_data = pd.read_table("pass_read.tsv")
+
+
+    total_read = total_data.shape[0]
+    pass_read = pass_data.shape[0]
+
+
+    print(f'The total number of reads is: {total_read}') 
+    print(f'The number of pass reads is: {pass_read}') 
 
 
 if __name__ == "__main__":
