@@ -2,13 +2,13 @@ import pandas as pd
 from Bio import SeqIO
 import gzip
 
-def filterData(df_seqStat):
+def filterData(df_seqStat, min_length, qscore):
 
     # seqtsv = pd.read_csv(file, delimiter='\t') # read file
 
     #condition
-    df_seqStat['length_filter'] = df_seqStat['seq_length'] >= 200 
-    df_seqStat['meanQscore_filter'] = df_seqStat['meanQ'] >= 7
+    df_seqStat['length_filter'] = df_seqStat['seq_length'] >= min_length 
+    df_seqStat['meanQscore_filter'] = df_seqStat['meanQ'] >= qscore
 
     # save as tsv ???
     df_seqStat.to_csv('total_read.tsv', index=None, sep="\t")
