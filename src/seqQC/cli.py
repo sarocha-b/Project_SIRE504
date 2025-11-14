@@ -8,10 +8,10 @@ def argparserlocal():
     subparsers = parser.add_subparsers(title='commands', description='Please choose command below:',dest='command')
     subparsers.required=True
 
-    filter_command = subparsers.add_parser('data_group_barcode', help='Filter pass read')
+    filter_command = subparsers.add_parser('main', help='Filter pass read')
     filter_command.add_argument("-f", "--file", type=str, default=None, 
                                 help="provide fastq file") 
-    filter_command.add_argument("-m", "--min", action="store_true",
+    filter_command.add_argument("-m", "--mins", action="store_true",
                             help="Minimum read length")
     filter_command.add_argument("-M", "--max", action="store_true",
                             help="Maximum read length")
