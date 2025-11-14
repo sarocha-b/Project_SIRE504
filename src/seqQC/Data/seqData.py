@@ -54,7 +54,8 @@ def preprocess_data(file):
 
 
 if __name__ == "__main__":
-    preprocess_data('../term_project/raw_data/ont_reads.project.fastq.gz')
+    # preprocess_data('../term_project/raw_data/ont_reads.project.fastq.gz')
+    data_group_barcode('../test.fastq.gz')
     # preprocess_data('../term_project/raw_data/try_seq.fastq')
 
 
