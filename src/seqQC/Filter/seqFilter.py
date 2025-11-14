@@ -58,6 +58,7 @@ def countRead():
 
     print(f'The total number of reads is: {total_read}') 
     print(f'The number of pass reads is: {pass_read}') 
+    print(f'The number of fail reads is: {total_read - pass_read}')
 
 
 if __name__ == "__main__":
