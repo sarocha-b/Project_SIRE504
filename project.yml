@@ -1,0 +1,10 @@
+name: seqQC
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - biopython
+  - pandas
+  - matplotlib
+prefix: /Users/sarocha/miniforge3/envs/project
