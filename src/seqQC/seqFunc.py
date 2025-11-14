@@ -16,6 +16,7 @@ def filter_seq(file, min_length, qscore):
     seqFilter.filterData(df_seqStat, min_length, qscore)
     seqFilter.filtered()
     seqFilter.DataToFastq(file)
+    seqFilter.countRead()
 
     return "Filtering complete. Check output files for results."
 
