@@ -4,13 +4,11 @@ import gzip
 
 def filterData(df_seqStat):
 
-    # seqtsv = pd.read_csv(file, delimiter='\t') # read file
-
     #condition
     df_seqStat['length_filter'] = df_seqStat['seq_length'] >= 200 
     df_seqStat['meanQscore_filter'] = df_seqStat['meanQ'] >= 7
 
-    # save as tsv ???
+    # save as tsv
     df_seqStat.to_csv('total_read.tsv', index=None, sep="\t")
     
     print(f"Save data as a tsv file")
