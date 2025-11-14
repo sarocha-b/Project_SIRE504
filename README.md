@@ -13,12 +13,11 @@ seqQC <command> [option]
 ```
 
 Common flags:
-
-`-f/ --file FILENAME` - input fastq.gz file
-`-m/ --mins INT` - minimum read length
-`-q/ --qual INT` - minimum average quality score
+- `-f/ --file FILENAME` - input fastq.gz file
+- `-m/ --mins INT` - minimum read length
+- `-q/ --qual INT` - minimum average quality score
 
 ## Command
 `seqQC` 
-Add `-h/ --help` after command to see its specific usage.
+- Add `-h/ --help` after command to see its specific usage.
 
