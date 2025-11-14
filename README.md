@@ -1,1 +1,4 @@
-# Project_SIRE504
+# SeqQC
+Command-line helpers for filter DNA sequences based on quality and length
+
+# Installation
