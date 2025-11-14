@@ -8,7 +8,7 @@ def argparserlocal():
     subparsers = parser.add_subparsers(title='commands', description='Please choose command below:',dest='command')
     subparsers.required=True
 
-    filter_command = subparsers.add_parser('main', help='Filter pass read')
+    filter_command = subparsers.add_parser('seqQC', help='Filter pass read')
     filter_command.add_argument("-f", "--file", type=str, default=None, 
                                 help="provide fastq.gz file") 
     filter_command.add_argument("-m", "--mins", type=int, default=200,
