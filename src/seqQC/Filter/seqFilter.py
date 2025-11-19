@@ -2,16 +2,16 @@ import pandas as pd
 from Bio import SeqIO
 import gzip
 
-def filterData(df_seqStat):
+def filterData(df_seqStat, min_length, qscore):
 
     #condition
-    df_seqStat['length_filter'] = df_seqStat['seq_length'] >= 200 
-    df_seqStat['meanQscore_filter'] = df_seqStat['meanQ'] >= 7
+    df_seqStat['length_filter'] = df_seqStat['seq_length'] >= min_length 
+    df_seqStat['mean_qscore_filter'] = df_seqStat['mean_qscore'] >= qscore
 
     # save as tsv
     df_seqStat.to_csv('total_read.tsv', index=None, sep="\t")
     
-    print(f"Save data as a tsv file")
+    print(f"save as tsv file")
 
 
 def filtered():
@@ -19,12 +19,12 @@ def filtered():
     SeqTsv = pd.read_csv('total_read.tsv', delimiter='\t')
 
     # add new col with 2 condition
-    SeqTsv["passes_filtering"] = SeqTsv['length_filter'] & SeqTsv['meanQscore_filter'] # & operator : return True or False
+    SeqTsv["passes_filter"] = SeqTsv['length_filter'] & SeqTsv['mean_qscore_filter'] # & operator : return True or False
 
-    passed = SeqTsv[SeqTsv['passes_filtering']] #return only column[passes_filtering] is True
+    passed = SeqTsv[SeqTsv['passes_filter']] #return only column[passes_filter] is True
     passed.to_csv('pass_read.tsv', sep='\t', index=False ) #save to new tsv
 
-    print('save the filtered data')
+    print('save as filtered data')
 
 
 def DataToFastq(file):
@@ -39,10 +39,10 @@ def DataToFastq(file):
                     record += rec.format('fastq')
                     
 
-    with open('filtered_seq.fastq', 'w') as output:
+    with open('filtered_seq.fastq.gz', 'w') as output:
         output.write(record)
                 
-    print('save as fastq')
+    print('save as fastq.gz')
 
 
 def countRead():
