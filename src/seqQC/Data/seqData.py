@@ -1,5 +1,4 @@
 from Bio import SeqIO
-import json
 import re
 import gzip
 import pandas as pd
@@ -7,8 +6,6 @@ import pandas as pd
 dict_group = {}
 
 def data_group_barcode(file): # Data table grouping by barcode
-    
-    # read gzip file
     with gzip.open(file,"rt") as input_file:
         for data in SeqIO.parse(input_file, 'fastq'):
             filter_barcode = re.finditer(f'barcode[0-9]+', data.description)
