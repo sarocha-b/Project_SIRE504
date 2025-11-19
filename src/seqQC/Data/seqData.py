@@ -2,17 +2,14 @@ from Bio import SeqIO
 import json
 import re
 import gzip
-# from Bio.SeqRecord import SeqRecord
-# import csv
 import pandas as pd
 
 dict_group = {}
 
 def data_group_barcode(file): # Data table grouping by barcode
-
+    
     # read gzip file
     with gzip.open(file,"rt") as input_file:
-    # with open(file,"r") as input_file:
         for data in SeqIO.parse(input_file, 'fastq'):
             filter_barcode = re.finditer(f'barcode[0-9]+', data.description)
             
@@ -21,10 +18,9 @@ def data_group_barcode(file): # Data table grouping by barcode
                 each_barcode = barcode.group() 
                 # add to dict
                 dict_group.setdefault(each_barcode,[]).append(data)
+    return 
 
-    print("grouping done")
 
-    
 def assess_data():
     pre_convert_data = []
     for barcode, records in dict_group.items():
@@ -42,7 +38,7 @@ def assess_data():
 
 def convert_df(data):
     df = pd.DataFrame(data, columns=["barcode", "seq_id", "total_phred_score", "seq_length"])
-    print("converting done")
+    print("grouping done")
     return df
 
 
