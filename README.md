@@ -8,7 +8,7 @@ conda env create -f project.yml
 ```
 Activating an environment
 ```bash
-conda activate seqQc
+conda activate seqQC
 ```
 
 ## Usage
