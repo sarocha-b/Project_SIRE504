@@ -14,7 +14,7 @@ def main():
         qscore = args.qual
         if args.file == None or args.mins == None or args.qual == None:
             parser.parse_args(['seqQC','-h'])
-        print("Input",args.file,"\nStatus:", filter_seq(file, min_length, qscore))  
+        print("Input:",args.file,"\nStatus:", filter_seq(file, min_length, qscore))  
         print("Minimum length:", args.mins)
         print("Minimum average quality score:", args.qual)
 
@@ -22,7 +22,7 @@ def main():
         column = args.column
         if args.file == None or args.column == None:
             parser.parse_args(['seqDist','-h'])
-        print("Input",args.file,"\nStatus:", dist_seq(file, column))  
+        print("Input:",args.file,"\nStatus:", dist_seq(file, column))  
         print("Column for distribution plot:", args.column)
            
 
