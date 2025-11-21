@@ -5,3 +5,5 @@ __pycache__/cli.cpython-312.pyc
 Calculation/__pycache__/ 
 Filter/__pycache__/ 
 __pycache__/main.cpython-312.pyc
+Distribution/__pycache__/__init__.cpython-311.pyc
+Distribution/__pycache__/seqDist.cpython-311.pyc
