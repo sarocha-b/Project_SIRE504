@@ -44,6 +44,7 @@ def DataToFastq(file):
         output.write(record)
                 
     print('save as fastq.gz')
+    print("-" * 40)
 
 
 def countRead():
@@ -58,6 +59,7 @@ def countRead():
     print(f'The total number of reads is: {total_read}') 
     print(f'The number of pass reads is: {pass_read}') 
     print(f'The number of fail reads is: {total_read - pass_read}')
+    print("-" * 40)
 
 
 if __name__ == "__main__":
