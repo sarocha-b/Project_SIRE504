@@ -7,4 +7,5 @@ dependencies:
   - biopython
   - pandas
   - matplotlib
+  - seaborn
 prefix: /Users/sarocha/miniforge3/envs/project
