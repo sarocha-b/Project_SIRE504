@@ -13,12 +13,9 @@ def argparserlocal():
                                 help="provide fastq.gz file") 
     filter_command.add_argument("-m", "--mins", type=int, default=200,
                             help="minimum read length")
-    # filter_command.add_argument("-M", "--max", action="store_true",
-    #                         help="Maximum read length")
     filter_command.add_argument("-q", "--qual", type=int, default=7,
                                 help="minimum average quality score")
-    # filter_command.add_argument("-w", "--high", action="store_true",
-    #                             help="Maximum quality score")
+
 
     filter_command = subparsers.add_parser('seqDist', help='Distribution plot')
     filter_command.add_argument("-f", "--file", type=str, default=None, 

@@ -8,11 +8,10 @@ def main():
     args = parser.parse_args()
     
     file = args.file
-    min_length = args.mins
-    qscore = args.qual
-    column = args.column
     
     if args.command == 'seqQC':
+        min_length = args.mins
+        qscore = args.qual
         if args.file == None or args.mins == None or args.qual == None:
             parser.parse_args(['seqQC','-h'])
         print("Input",args.file,"\nStatus:", filter_seq(file, min_length, qscore))  
@@ -20,6 +19,7 @@ def main():
         print("Minimum average quality score:", args.qual)
 
     elif args.command == 'seqDist':
+        column = args.column
         if args.file == None or args.column == None:
             parser.parse_args(['seqDist','-h'])
         print("Input",args.file,"\nStatus:", dist_seq(file, column))  
