@@ -2,6 +2,7 @@ from Data import seqData
 from Calculation import seqCal
 from Filter import seqFilter
 from Distribution import seqDist
+import pandas as pd
 
 def filter_seq(file, min_length, qscore):
     # Step 1: Preprocess data to create DataFrame
@@ -23,14 +24,19 @@ def filter_seq(file, min_length, qscore):
 
 def dist_seq(file, column):
 
-    seqData.data_group_barcode(file)
-    data = seqData.assess_data()
-    df = seqData.convert_df(data)
+    if '.tsv' in file:
+        df_seqStat = pd.read_table(file)
+        seqDist.plot_bc_dist(df_seqStat,column)
+    
+    else:
+        seqData.data_group_barcode(file)
+        data = seqData.assess_data()
+        df = seqData.convert_df(data)
 
-    data_stat = seqCal.cal_fastq_stat(file)
-    df_seqStat = seqCal.df_merge_stat(df, data_stat)
+        data_stat = seqCal.cal_fastq_stat(file)
+        df_seqStat = seqCal.df_merge_stat(df, data_stat)
 
-    seqDist.plot_bc_dist(df_seqStat, column)
+        seqDist.plot_bc_dist(df_seqStat, column)
     return "Distribution plot generated."
 
 if __name__ == "__main__":
