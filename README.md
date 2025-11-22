@@ -18,7 +18,7 @@ main.py <command> [option]
 
 Common flags:
 
-- `-f/ --file FILENAME` - input fastq.gz file.
+- `-f/ --file FILENAME` - input fastq.gz file and tsv file (only for seqDist command).
 - `-h/ --help` after command to see its specific usage.
 
 ## Command
