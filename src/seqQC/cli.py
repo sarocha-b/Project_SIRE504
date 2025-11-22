@@ -19,7 +19,7 @@ def argparserlocal():
 
     filter_command = subparsers.add_parser('seqDist', help='Distribution plot')
     filter_command.add_argument("-f", "--file", type=str, default=None, 
-                                help="provide fastq.gz file")
+                                help="provide fastq.gz file or tsv file")
     filter_command.add_argument("-c", "--column", type=str, default=None, 
                                 help="select column for distribution plot")
 
