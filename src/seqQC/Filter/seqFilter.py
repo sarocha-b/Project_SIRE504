@@ -40,7 +40,7 @@ def DataToFastq(file):
                     record += rec.format('fastq')
                     
 
-    with open('filtered_seq.fastq.gz', 'w') as output:
+    with gzip.open('filtered_seq.fastq.gz', 'wt') as output:
         output.write(record)
                 
     print('save as fastq.gz')
