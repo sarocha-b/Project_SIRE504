@@ -35,6 +35,12 @@ Create distribution plot
 
 - `-c/ --column COLUMN NAME` - select column for distribution plot.
 
+    option:
+  
+      - seq_length - total read length.
+
+      - mean_qscore - total quality score.
+
 ## Developer Notes
 - Source lives in `src/seqQC`.
 
